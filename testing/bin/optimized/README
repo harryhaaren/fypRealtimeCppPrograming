@@ -1,0 +1,8 @@
+
+
+== Compilation flags for OPTIMIZED
+When compiling the optimized versions, the following flags were set:
+
+  CFLAGS = -O3
+  
+  LDFLAGS=-ljack -lsndfile

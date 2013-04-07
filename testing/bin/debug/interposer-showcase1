@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Insert the non-RT function interceptor
+export LD_PRELOAD=./jack_interposer.so
+
+# run the showcase in GDB, so we can get meaningful backtraces
+gdb ./showcase1

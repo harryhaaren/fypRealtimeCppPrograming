@@ -1,0 +1,17 @@
+
+== Compilation flags for DEBUG
+When compiling the debug versions, the following flags were set:
+
+  CFLAGS =-g -Wall
+  LDFLAGS=-ljack -lsndfile
+
+
+== Scripts
+Two convenience scripts are provided to launch each showcase in gdb under the
+supervision of jack_interposer.so. Open each script to see the commands.
+
+== Jack Interposer
+The jack interposer tool is needed for the interposer-showcase* scripts
+to run. It is available here  https://github.com/raboof/jack_interposer
+The scripts expect a shared object titled jack_interposer.so to be present
+in the current directory in order to function correctly.

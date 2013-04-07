@@ -1,0 +1,104 @@
+
+/*  Author: Harry van Haaren, 2013
+ *          harryhaaren@gmail.com
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ */
+
+==== Comparing two solutions to writing real-time audio applications in C++
+
+This is the deliverable submission for the FYP project by Harry van Haaren, MMPT.
+The entireity of the code (with one exception) contained within this folder has
+been written as part of the project. The exception is imp2/ringbuffer.hpp, which
+has been credited accordingling. The project uses various tools that should be
+present on the system. The following is a list of necessary libraries and tools
+to compile the code, and generate the statistics as presented in the report.
+
+== Programs
+-a C++ compiler
+-GDB
+-make
+-valgrind
+-GNUplot
+-gprof2dot.py
+-graphviz
+-cpupower
+-rtirq
+-iwconfig
+-convert
+-general unix tools, ps, xterm etc
+-massifplot (http://download.sarine.nl/massifplot/)
+
+== Libraries
+-JACK
+-GTKmm
+-libsndfile
+-Boost headers
+
+
+==== Compilation
+To compile the code a "compile.sh" script is provided for convinience. This script
+compiles 3 versions, and copies them to "testing/bin/<version>":
+-optimized
+-debug
+-selfTesting
+
+
+==== Running
+Each implementation can be run from the subdirectory it was copied to, the
+samples subdir will be scanned for .wav samples automatically.
+
+
+==== Generating Statistics
+To generate statistics, a "runTests.sh" script is provided for convienience.
+It sets up the system (turns off wifi, amends the rtprio of the tasklets etc)
+It proceeds to launch each selfTesting implementation using xterm, and collect stats.
+Then graphs are generated from the profiling run, and written to the "output" dir.
+
+To generate the massif graphs, run the self profiling implementations like so:
+valgrind --tool=massif ./showcaseX
+
+At the end, valgrind will output a massif.out.<PID> text file.
+Convert that file to an image using GNUplot and massifplot:
+./test massif.out.<PID>
+
+Rotate the outputted graph 90 degree counter clockwise:
+convert -rotate -90 massif.out.<PID>.png outputImage.png
+
+
+== Comparing massif runs
+The "testing" directory contains a gnuplot script that will plot the output of
+the massifplot 'input.txt' files. In order to retain these files, comment the
+rm input.txt 
+line in test.sh (a script which is part of massifplot).
+
+Run both implementations, calling one input1.txt and the other input2.txt.
+To create the graph of these two input text files, simply run
+gnuplot massifCompare.gnuplot
+and an image 'massifCompare.png' will be created in the output directory.
+Rotate as outlined previously.
+
+If running valgrind with the -t ms option, it will be necessary to update the
+label in the massifCompare.gnuplot file, and change the output filename.
+
+
+==== Contact
+If a query about this project arises, you can contact the author.
+I hope this work has been useful, its certainly taught me a lot about
+real-time programming.
+
+ -Harry van Haaren
+  harryhaaren@gmail.com

@@ -1,0 +1,14 @@
+
+
+== Compilation flags for SELF-PROFILING
+When compiling the profiling versions, the following flags were set:
+
+  CFLAGS =-DSELF_TEST -g -pg
+  
+  LDFLAGS=-pg -ljack -lsndfile
+
+
+Debugging symbols are present:    CFLAGS  -g
+Self testing is compiled in:      CFLAGS  -DSELF_TEST
+Profiling information is present: CFLAGS  -pg 
+                                  LDFLAGS -pg
