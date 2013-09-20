@@ -23,7 +23,7 @@
 This is the deliverable submission for the FYP project by Harry van Haaren, MMPT.
 The entireity of the code (with one exception) contained within this folder has
 been written as part of the project. The exception is imp2/ringbuffer.hpp, which
-has been credited accordingling. The project uses various tools that should be
+has been credited accordingly. The project uses various tools that should be
 present on the system. The following is a list of necessary libraries and tools
 to compile the code, and generate the statistics as presented in the report.
 
@@ -93,7 +93,6 @@ Rotate as outlined previously.
 
 If running valgrind with the -t ms option, it will be necessary to update the
 label in the massifCompare.gnuplot file, and change the output filename.
-
 
 ==== Contact
 If a query about this project arises, you can contact the author.
